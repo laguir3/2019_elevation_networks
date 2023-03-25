@@ -1,0 +1,38 @@
+digraph dot {
+
+# Labels
+label = 'Hypothesized Floral SEM';
+labelloc = 't';
+fontsize = 25;
+
+# node definitions with substituted label text
+node [fontname = Helvetica,
+      shape = rectangle, 
+      penwidth = 3, 
+      fontsize = 20]
+
+# nodes
+a [label = '@@1']
+
+b [label = '@@2-1']
+c [label = '@@2-2']
+
+d [label = '@@3-1']
+
+e [label = '@@4']
+
+# edge definitions with the node IDs
+edge [penwidth = 2]
+
+# edges
+a -> {b c}
+b -> e
+b -> {c} [dir = both]
+c -> {d e}
+d -> e
+}
+
+[1]: 'Elevation'
+[2]: c('Floral Abundance', paste0('Floral Phylogenetic Diversity', '\n (Faith', '&#x2b9;', 's PD)'))
+[3]: 'Floral Functional Diversity \n (Trait Spaces)'
+[4]: c('Network Index')

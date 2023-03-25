@@ -1,0 +1,80 @@
+digraph dot {
+
+graph [layout = dot, 
+       overlap = false, 
+       ordering = in]
+       
+# Letter labels
+label = 'B';
+labelloc = 'top';
+labeljust = left;
+fontsize = 30;
+
+# node definitions with substituted label text
+node [fontname = Helvetica, shape = rectangle, penwidth = 3, fontsize = 20]
+
+# Floral abundance
+a [label = '@@1-1']
+
+# Insect abundance
+b [label = '@@2-1']
+
+# diversity indices
+c [label = '@@3-1']
+d [label = '@@3-2']
+
+# network incdices
+e [label = '@@4-1', shape = oval]
+f [label = '@@4-2', shape = oval]
+g [label = '@@4-3' shape = oval]
+
+# edge definitions with the node IDs
+edge [penwidth = 2, fontsize = 20]
+a -> b [label = 0.52]
+a -> c [label = 0.79]
+b -> c [dir = both, label = 0.46, ]
+b -> d [dir = both, label = 0.50]
+c -> d [label = 0.70]
+
+# paths to h2 (e)
+b -> e [color = transparent]
+c -> e [color = transparent]
+d -> e [label = 0.46, penwidth = 4]
+
+# paths to modularity (f)
+b -> f [color = red, 
+        label = -0.31, 
+        penwidth = 4,
+        fontcolor = red]
+c -> f [color = transparent]
+d -> f [label = 0.83, 
+        penwidth = 4]
+
+# paths to nestedness (g)
+b -> g [label = 0.46, 
+        penwidth = 4]
+c -> g [color = red, 
+        label = -1, 
+        penwidth = 4, 
+        fontcolor = red]
+d -> g [color = transparent]
+
+subgraph cluster_0 { 
+  e;f;g;
+  color = lightblue;
+  style = filled;
+  label = ""
+}
+
+subgraph {
+  rank = same;
+  c;d
+}
+
+}
+
+
+[1]: 'Floral Abundance'
+[2]: paste0('Pollinator Abundance', '\n', 'R', '&#x00B2;', ' = 0.27')
+[3]: c(paste0('Pollinator Phylogenetic Diversity,', '\n (Faith', '&#x2b9;', 's PD)', '\n', 'R', '&#x00B2;', ' = 0.62'), paste0('Pollinator Functional Diversity', '\n (Trait Spaces)', '\n', 'R', '&#x00B2;', ' = 0.49'))
+[4]: c(paste0('Complementary Specialization', '\n (H', '&#x2082;', '&#x2b9;)', '\n', 'R', '&#x00B2;', ' = 0.22'), paste0('Modularity Q', '\n', 'R', '&#x00B2;', ' = 0.67'), paste0('Nestedness', '\n (Weighted NODF)', '\n', 'R', '&#x00B2;', ' = 0.62'))

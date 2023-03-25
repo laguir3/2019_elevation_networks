@@ -1,0 +1,103 @@
+digraph dot {
+
+# layout
+graph [layout = dot, 
+       overlap = false, 
+       ordering = in]
+       
+# Letter labels
+label = 'A';
+labelloc = 'top';
+labeljust = left;
+fontsize = 30;
+
+# node definitions with substituted label text
+node [fontname = Helvetica,
+      shape = rectangle, 
+      penwidth = 3, 
+      fontsize = 20]
+
+# elevation
+a [label = '@@1']
+
+# floral abundance
+b [label = '@@2-1']
+
+# diversity indices
+c [label = '@@3-1']
+d [label = '@@3-2']
+
+# network indices
+e [label = '@@4-1', 
+   shape = oval]
+f [label = '@@4-2', 
+   shape = oval]
+g [label = '@@4-3', 
+   shape = oval]
+
+
+# edge definitions with the node IDs
+edge [penwidth = 2, 
+      fontsize = 20]
+a -> b [color = red,
+        label = -0.44, 
+        fontcolor = red]
+a -> c [color = red, 
+        label = -0.45, 
+        fontcolor = red]
+b -> c [dir = both, 
+        label = 0.54]
+c -> d [headlabel = 0.61, 
+        labeldistance = 3.7, 
+        labelfloat = true]
+
+# paths to h2
+c -> e [color = transparent]
+d -> e [color = transparent]
+b -> e [color = gray, 
+        label = 0.35, 
+        penwidth = 5,
+        fontcolor = gray]
+
+# paths to modularity
+b -> f [style = dashed, 
+        label = 0.44, 
+        penwidth = 5]
+c -> f [color = transparent]
+d -> f [style = dashed, 
+        xlabel = 0.44,
+        penwidth = 5, 
+        xlp = '200,200']
+
+# paths to nestedness
+b -> g [style = dashed, 
+        label = 0.51, 
+        color = red, 
+        penwidth = 5, 
+        fontcolor = red]
+c -> g [color = transparent]
+d -> g [style = dashed, 
+        label = -0.49, 
+        color = red, 
+        penwidth = 5,
+        fontcolor = red]
+
+subgraph cluster_0 { 
+  e;g;f;
+  color = lightblue;
+  style = filled;
+  label = ""
+}
+
+subgraph {
+  rank = same;
+  c;d
+}
+
+
+}
+
+[1]: 'Elevation'
+[2]: paste0('Floral Abundance', '\n', 'R', '&#x00B2;', ' = 0.19')
+[3]: c(paste0('Floral Phylogenetic Diversity,', '\n (Faith', '&#x2b9;', 's PD)', '\n', 'R', '&#x00B2;', ' = 0.20'), paste0('Floral Color Diversity', '\n (Color Trait Spaces)', '\n', 'R', '&#x00B2;', ' = 0.37'))
+[4]: c(paste0('Complementary Specialization', '\n (H','&#x2082;', '&#x2b9;)', '\n', 'R', '&#x00B2;', ' = 0.13'), paste0('Modularity Q', '\n', 'R', '&#x00B2;', ' = 0.19*'), paste0('Nestedness', '\n (Weighted NODF)', '\n', 'R', '&#x00B2;', ' = 0.25*'))

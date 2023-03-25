@@ -1,0 +1,43 @@
+digraph dot {
+  
+graph [layout = dot, 
+       overlap = false]
+
+# node definitions with substituted label text
+node [fontname = Helvetica, 
+      shape = rectangle, 
+      penwidth = 3, 
+      fontsize = 20]
+
+# nodes
+a [label = '@@1']
+
+b [label = '@@2-1']
+c [label = '@@2-2']
+
+d [label = '@@3-1']
+
+e [label = '@@4']
+
+
+# edge definitions with the node IDs
+edge [penwidth = 2, fontsize = 20]
+
+# edges
+a -> b [color = red, 
+        label = -0.44]
+a -> c [color = red, 
+        label = -0.45]
+b -> e [color = gray, 
+        label = 0.35]
+b -> c [dir = both, 
+        label = 0.54]
+c -> d [label = 0.61]
+c -> e [color = transparent]
+d -> e [color = transparent]
+}
+
+[1]: 'Elevation'
+[2]: c(paste0('Floral Abundance', '\n', 'R', '&#x00B2;', ' = 0.19'), paste0('Floral Phylogenetic Diversity,', '\n (Faith', '&#x2b9;', 's PD)', '\n', 'R', '&#x00B2;', ' = 0.20'))
+[3]: paste0('Floral Color Diversity', '\n (Color Trait Spaces)', '\n', 'R', '&#x00B2;', ' = 0.37')
+[4]: paste0('Complementary Specialization', '\n (H','&#x2082;', '&#x2b9;)', '\n', 'R', '&#x00B2;', ' = 0.13')

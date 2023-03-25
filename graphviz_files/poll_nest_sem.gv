@@ -1,0 +1,45 @@
+digraph dot {
+
+# layout
+graph [layout = dot, 
+       overlap = false]
+
+# node definitions with substituted label text
+node [fontname = Helvetica, 
+      shape = rectangle, 
+      penwidth = 2, 
+      fontsize = 20]
+
+# nodes
+a [label = '@@1-1']
+
+b [label = '@@2-1']
+c [label = '@@2-2']
+
+d [label = '@@3']
+
+e [label = '@@4']
+
+# edge definitions with the node IDs
+edge [penwidth = 2, 
+      fontsize = 20]
+
+# edges
+a -> b [label = 0.52]
+a -> c [label = 0.79]
+b -> e [label = 0.46]
+b -> c [dir = both, 
+        label = 0.46]
+b -> d [dir = both, 
+        label = 0.50] 
+c -> d [label = 0.70]
+c -> e [color = red, 
+        label = -1.00]
+d -> e [color = transparent]
+}
+
+
+[1]: 'Floral Abundance'
+[2]: c(paste0('Pollinator Abundance', '\n', 'R', '&#x00B2;', ' = 0.27'), paste0('Pollinator Phylogenetic Diversity,', '\n (Faith', '&#x2b9;', 's PD)', '\n', 'R', '&#x00B2;', ' = 0.62'))
+[3]: paste0('Pollinator Functional Diversity', '\n (Trait Spaces)', '\n', 'R', '&#x00B2;', ' = 0.49')
+[4]: paste0('Nestedness', '\n (Weighted NODF)', '\n', 'R', '&#x00B2;', ' = 0.62')
