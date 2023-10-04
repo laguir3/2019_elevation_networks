@@ -6,3 +6,20 @@ metadata
 .Rdata
 .httr-oauth
 .DS_Store
+
+
+# manuscript files
+manuscript/*
+
+# presentations
+presentations/*
+
+# old scripts
+old_scripts/*
+
+# old formats
+other_formats
+
+# Old plots
+Plots/2020_Old_Plots/*
+Plots/Colors/*

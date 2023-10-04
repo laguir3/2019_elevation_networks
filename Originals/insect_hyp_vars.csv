@@ -1,0 +1,9 @@
+﻿Insect_traits,All_traits,Body_traits,Only_pollen,Head_abdomen_pollen
+Body length,X,X,,
+Proboscis length,X,X,,
+Head diameter,X,X,,
+Head pollen,X,,X,X
+Thorax pollen,X,,X,
+Legs pollen,X,,X,
+Abdomen pollen,X,,X,X
+Max pollen ,X,,,
