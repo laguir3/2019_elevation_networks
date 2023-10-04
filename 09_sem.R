@@ -417,30 +417,32 @@ floral_nest_sem <- grViz(diagram = "graphviz_files/floral_nest_sem.gv")
 fns_svg <- export_svg(floral_nest_sem)
 
 # as svg
-writeLines(fns_svg, "
-           Plots/other_formats/floral_nestedness_sem.svg")
+writeLines(fns_svg, "Plots/other_formats/floral_nestedness_sem.svg")
 
 # # as pdf
 # fns_svg <- charToRaw(fns_svg)
 # rsvg_pdf(fns_svg,
 #          "Plots/floral_nestedness_sem.pdf")
 
-# ###### Combine SEM Plots ####
-# # Convert saved .svgs to ggplot images
-# fms_image <- image_ggplot(image_read("Plots/other_formats/floral_modularity_sem.svg"))
-# fhs_image <- image_ggplot(image_read("Plots/other_formats/floral_h2_sem.svg"))
-# fns_image <- image_ggplot(image_read("Plots/other_formats/floral_nestedness_sem.svg"))
-# 
-# # Bind
-# floral_sems <- fhs_image + 
-#   fms_image + 
-#   fns_image
-# 
-# # Save as pdf
-# ggsave("Plots/floral_sems.pdf",
-#        floral_sems,
-#        width = 8, 
-#        height = 3)
+###### Combine SEM Plots ####
+# Convert saved .svgs to ggplot images
+fms_image <- image_ggplot(image_read("Plots/other_formats/floral_modularity_sem.svg")) +
+  labs(tag = "B")
+fhs_image <- image_ggplot(image_read("Plots/other_formats/floral_h2_sem.svg")) +
+  labs(tag = "A")
+fns_image <- image_ggplot(image_read("Plots/other_formats/floral_nestedness_sem.svg")) +
+  labs(tag = "C")
+
+# Bind
+floral_sems <- fhs_image +
+  fms_image +
+  fns_image
+
+# Save as pdf
+ggsave("Plots/floral_sems.pdf",
+       floral_sems,
+       width = 8,
+       height = 3)
 
 ##### Pollinators ####
 ###### Modularity ####
@@ -801,22 +803,35 @@ writeLines(pns_svg,
 # rsvg_pdf(pns_svg,
 #          "Plots/pollinator_nestedness_sem.pdf")
 
-# ###### Combine SEM Plots ####
-# # Convert saved .svgs to ggplot images
-# pms_image <- image_ggplot(image_read("Plots/other_formats/pollinator_modularity_sem.svg"))
-# phs_image <- image_ggplot(image_read("Plots/other_formats/pollinator_h2_sem.svg"))
-# pns_image <- image_ggplot(image_read("Plots/other_formats/pollinator_nestedness_sem.svg"))
-# 
-# # Bind
-# pollinator_sems <- phs_image + 
-#   pms_image + 
-#   pns_image
-# 
-# # Save as pdf
-# ggsave("Plots/pollinator_sems.pdf",
-#        pollinator_sems,
-#        width = 7, 
-#        height = 3)
+###### Combine SEM Plots ####
+# Convert saved .svgs to ggplot images 
+# Add tags
+phs_image <- image_ggplot(image_read("Plots/other_formats/pollinator_h2_sem.svg")) +
+  labs(tag = "D")
+pms_image <- image_ggplot(image_read("Plots/other_formats/pollinator_modularity_sem.svg")) +
+  labs(tag = "E")
+pns_image <- image_ggplot(image_read("Plots/other_formats/pollinator_nestedness_sem.svg")) +
+  labs(tag = "F")
+
+# Bind
+pollinator_sems <- phs_image +
+  pms_image +
+  pns_image
+
+# Save as pdf
+ggsave("Plots/pollinator_sems.pdf",
+       pollinator_sems,
+       width = 7,
+       height = 3)
+
+# Bind all SEMs together
+all_sems <- floral_sems / pollinator_sems
+
+# Save as pdf
+ggsave("Plots/figure5.pdf",
+       all_sems,
+       width = 7, 
+       height = 6)
 
 ##### Condensed SEM's #####
 # Make on SEM diagrams for each taxonomic levels from all three SEM's
