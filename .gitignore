@@ -2,6 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rapp.history
+.RDataTmp
+.RDataTmp1
 metadata
 .Rdata
 .httr-oauth
@@ -23,3 +26,6 @@ other_formats
 # Old plots
 Plots/2020_Old_Plots/*
 Plots/Colors/*
+
+# Reports
+Reports/*
